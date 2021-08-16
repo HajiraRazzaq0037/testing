@@ -2,9 +2,10 @@ import React, { useEffect, useContext, useState } from 'react'
 import { GlobalContext } from '../../context/GlobalState'
 import firebase from '../../firebase'
 import axios from 'axios'
+import Header from '../../atoms/header'
 export default (props: any) => {
   let { history } = props
-  const { state, getDataAction, dispatch }: any = useContext(GlobalContext)
+  const { state }: any = useContext(GlobalContext)
   const [data, setData] = useState([])
   useEffect(() => {
     axios.get('/api').then(response => {
@@ -14,28 +15,25 @@ export default (props: any) => {
 
   return (
     <div className=''>
+      <Header>
+        <button
+          className='p-8 bg-green-500 hover:bg-gren-300 w-full py-2 text-white'
+          onClick={() => {
+            firebase
+              .auth()
+              .signOut()
+              .then(() => {
+                state.loader = true
+                history.push('/login')
+              })
+          }}
+        >
+          Logout
+        </button>
+      </Header>
+
       <div className='py-5'>
         <div className='mt-8'>
-          <button
-            className='my-4 bg-green-400 hover:bg-green-500 w-full py-2 text-white'
-            onClick={() => {
-              firebase
-                .auth()
-                .signOut()
-                .then(() => {
-                  state.loader = true
-                  history.push('/login')
-                })
-            }}
-          >
-            Logout
-          </button>
-          <button
-            className='my-4 bg-green-400 hover:bg-green-500 w-full py-2 text-white'
-            onClick={() => getDataAction(dispatch)}
-          >
-            getData
-          </button>
           {data.map((sin: any, index: number) => (
             <div key={index} className='flex justify-between m-4'>
               <p key={index} className='text-base mb-2 flex  font-bold w-1/4'>

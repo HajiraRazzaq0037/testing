@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { getApiUrI } from '../../config'
 import axios from 'axios'
+import Header from '../../atoms/header'
 const Details = (props: any) => {
   const [data, setData] = useState({
     id: '',
@@ -8,7 +8,7 @@ const Details = (props: any) => {
     body: ''
   })
   useEffect(() => {
-    axios.get(getApiUrI).then((response: any) => {
+    axios.get('/api/').then((response: any) => {
       setData(
         response.data.find(
           (sin: any) => sin.id === parseInt(props.match.params.id)
@@ -18,6 +18,10 @@ const Details = (props: any) => {
   }, [props.match.params.id])
   return (
     <div className=''>
+      <Header>
+        <div></div>
+      </Header>
+
       <div className='py-5'>user Detail</div>
       <p>userId: {data.id}</p>
       <p>title: {data.title}</p>
