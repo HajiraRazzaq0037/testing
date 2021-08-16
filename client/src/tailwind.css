@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.button-color-orange{
+   background-color: #f14536;
+}
+
+.border-color-orange{
+   border: 1px solid #f14536;
+}
+.text-color-orange{
+   color: #f14536;
+}
