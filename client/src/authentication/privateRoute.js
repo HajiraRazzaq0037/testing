@@ -6,10 +6,9 @@ import Loader from "../atoms/loader";
 import firebase from "../firebase";
 import { GlobalContext } from "../context/GlobalState";
 import ViewDetails from "../pages/viewDetails/detail";
-export default (props: any) => {
+export default (props) => {
   let { history } = props;
-  const { state }: any = useContext(GlobalContext);
-  console.log("state", state);
+  const state = useContext(GlobalContext);
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user: any) => {
       if (user && user.uid !== null) {

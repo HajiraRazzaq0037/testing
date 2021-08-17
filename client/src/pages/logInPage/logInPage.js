@@ -2,10 +2,7 @@ import React, { useState, useContext } from "react";
 import firebase from "../../firebase";
 import { Link } from "react-router-dom";
 import { GlobalContext } from "../../context/GlobalState";
-type User = {
-  email: string | "",
-  password: string | "",
-};
+
 export default (history) => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState("");
